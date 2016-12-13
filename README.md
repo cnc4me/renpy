@@ -12,17 +12,19 @@ You can also create a labeled variable instead of just letters, to give more con
 
 ## Example
 ```
-#X_ERROR     : #140
+#ERROR_FLAG  : #149
 #Y_ERROR     : #141
-#Z_ERROR     : #142
-#ERROR_FLAG  : #148
-#PROBE_DEPTH : #600
+#X_ERROR     : #140
 #X_SHIFT     : #U
 #Y_SHIFT     : #V
-#X_ERROR     : #A
-#Y_ERROR     : #B
-#Z_ERROR     : #C
 %
 O1234(EXAMPLE)
 ...
 ```
+
+## Compiling
+To compile a RenPy program into a NC file, just run it through the interpreter on the command line.
+```
+$ python renpy.py my-cool-macro.renpy
+```
+The resulting output will be ```my-cool-macro.nc``` with all the variable substitutions made.
