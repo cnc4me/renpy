@@ -34,26 +34,26 @@ VARIABLES = {
 }
 
 OPERATORS = {
-    '==' : 'EQ',
-    '!=' : 'NE',
-    '>'  : 'GT',
-    '<'  : 'LT',
     '>=' : 'GE',
     '<=' : 'LE',
+    '==' : 'EQ',
+    '!=' : 'NE',
     '->' : 'GOTO',
+    '<'  : 'LT',
+    '>'  : 'GT',
 }
 
 REN_CYCLES = {
-    'PROBE_ON'   : '( PROBE ON )\nG65 P9832',
-    'PROBE_OFF'  : '( PROBE OFF )\nG65 P9833',
-    'POSITION'   : '( PROTECTED POSITIONING )\nG65 P9810',
-    'SURFACE'    : '( SINGLE SURFACE MEASURE )\nG65 P9811',
+    'PROBE_ON'   : 'G65 P9832',
+    'PROBE_OFF'  : 'G65 P9833',
+    'POSITION'   : 'G65 P9810',
+    'SURFACE'    : 'G65 P9811',
     'WEB_POCKET' : 'G65 P9812',
 }
 
 re_COMMENT    = re.compile(r'\(.*\)')
 re_VARIABLE   = re.compile(r'#([a-zA-Z0-9]+)')
-re_OPERATORS  = re.compile(r'(==|!=|>|<|>=|<=)')
+re_OPERATORS  = re.compile(r'(==|!=|<>|>|<|>=|<=)')
 re_GOTO       = re.compile(r'\s?(\=\>\s?)[0-9]+')
 re_PROGHEADER = re.compile(r'^(O|\:)[0-9]{4}\s?\(.*\)')
 re_VARIABLES  = re.compile(r'(%s)' % '|'.join(list(VARIABLES.keys())))

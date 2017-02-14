@@ -1,4 +1,4 @@
-# RenPy - A parser for converting hybrid Python / NC code into pure Fanuc Macro B NC code
+# RenPy - A parser for converting custom NC code into pure Fanuc Macro B NC code
 #
 from __future__ import print_function
 from RenPyConstants import *
@@ -9,6 +9,7 @@ def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
 class RenPy:
+    filename    = ''
     input_lines = None
     output_file = None
     USR_VARS    = []
@@ -17,16 +18,27 @@ class RenPy:
 
 
     def __init__(self, filename):
-        self.output_file = filename.replace('.renpy', '.nc')
+        self.filename = filename
 
-        with open(filename, 'r') as input_file:
+        with open(self.filename, 'r') as input_file:
             self.input_lines = input_file.read().splitlines()
 
     def run(self):
         #self.syntax_checks()
         self.process_vars()
         self.process_input()
+        self.set_filename()
         self.writeout()
+
+    def set_filename(self):
+        with open(self.filename, 'r') as input_file:
+            input_lines = input_file.read()
+            matches = re.compile(r'^\(NC FILE - (.*)\)', re.MULTILINE).findall(input_lines)
+
+        if matches is not None:
+            self.output_file = matches[0]
+        else:
+            self.output_file = filename.replace('.renpy', '.nc')
 
     def syntax_checks(self):
         errors = False
