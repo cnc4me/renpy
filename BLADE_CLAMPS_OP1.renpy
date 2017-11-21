@@ -11,10 +11,7 @@
 #PART_LIMIT    : #865
 %
 O00901 (Macro: Blade Clamps Op1)
-(VERSION - 1)
-(DATE - FEB. 15 2017)
-(TIME - 1:30 PM)
-(NC FILE - C:\Users\kevinh\projects\nc\blade clamp macros\BLADE_CLAMPS_OP1.V1.NC)
+(NC FILE - V:\VF10\MACROS\BLADE_CLAMPS_OP1.NC)
 
 
 (~~~~~~~~~ SETUP ~~~~~~~~~)

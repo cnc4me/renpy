@@ -34,11 +34,10 @@ VARIABLES = {
 }
 
 OPERATORS = {
-    '>=' : 'GE',
     '<=' : 'LE',
+    '>=' : 'GE',
     '==' : 'EQ',
     '!=' : 'NE',
-    '->' : 'GOTO',
     '<'  : 'LT',
     '>'  : 'GT',
 }
@@ -53,7 +52,7 @@ REN_CYCLES = {
 
 re_COMMENT    = re.compile(r'\(.*\)')
 re_VARIABLE   = re.compile(r'#([a-zA-Z0-9]+)')
-re_OPERATORS  = re.compile(r'(==|!=|<>|>|<|>=|<=)')
+re_OPERATORS  = re.compile(r'(<=|>=|==|!=|<|>)')
 re_GOTO       = re.compile(r'\s?(\=\>\s?)[0-9]+')
 re_PROGHEADER = re.compile(r'^(O|\:)[0-9]{4}\s?\(.*\)')
 re_VARIABLES  = re.compile(r'(%s)' % '|'.join(list(VARIABLES.keys())))
