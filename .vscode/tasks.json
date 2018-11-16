@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Output .NC",
+            "label": "RenPy - Output .NC",
             "type": "shell",
-            "command": "python ./renpy.py ${file}",
+            "command": "python ./renpy.py '${fileBasename}'",
             "presentation": {
                 "reveal": "always",
                 "panel": "new"

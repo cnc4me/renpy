@@ -1,5 +1,7 @@
-# RenPy - A parser for converting custom NC code into pure Fanuc Macro B NC code
-#
+#/usr/bin/env python
+
+'''RenPy - A parser for converting custom NC code into pure Fanuc Macro B NC code
+'''
 from __future__ import print_function
 from RenPyConstants import *
 from copy import copy
@@ -38,7 +40,7 @@ class RenPy:
         if matches is not None:
             self.output_file = matches[0]
         else:
-            self.output_file = filename.replace('.renpy', '.nc')
+            self.output_file = self.filename.replace('.renpy', '.nc')
 
     def syntax_checks(self):
         errors = False
@@ -99,6 +101,7 @@ class RenPy:
         output = '\n'.join(self.proccessed)
 
         try:
+            print()
             with open(self.output_file, 'w') as output_file:
                 print(output, file=output_file)
             print('Wrote program to %s' % self.output_file)
