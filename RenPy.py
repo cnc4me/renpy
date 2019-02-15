@@ -1,17 +1,16 @@
-#/usr/bin/env python
-
 '''RenPy - A parser for converting custom NC code into pure Fanuc Macro B NC code
 '''
 from __future__ import print_function
-from RenPyConstants import *
-from copy import copy
+from lib.RenPyConstants import *
+import re
 import sys
+import os.path
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
 class RenPy:
-    filename    = ''
+    input_file  = ''
     input_lines = None
     output_file = None
     USR_VARS    = []
@@ -20,27 +19,17 @@ class RenPy:
 
 
     def __init__(self, filename):
-        self.filename = filename
+        self.input_file = filename
+        self.output_file = os.path.basename(self.input_file.replace('.renpy', '.NC'))
 
-        with open(self.filename, 'r') as input_file:
+        with open(self.input_file, 'r') as input_file:
             self.input_lines = input_file.read().splitlines()
 
     def run(self):
         #self.syntax_checks()
         self.process_vars()
         self.process_input()
-        self.set_filename()
         self.writeout()
-
-    def set_filename(self):
-        with open(self.filename, 'r') as input_file:
-            input_lines = input_file.read()
-            matches = re.compile(r'^\(NC FILE - (.*)\)', re.MULTILINE).findall(input_lines)
-
-        if matches is not None:
-            self.output_file = matches[0]
-        else:
-            self.output_file = self.filename.replace('.renpy', '.nc')
 
     def syntax_checks(self):
         errors = False
@@ -101,9 +90,10 @@ class RenPy:
         output = '\n'.join(self.proccessed)
 
         try:
-            print()
-            with open(self.output_file, 'w') as output_file:
-                print(output, file=output_file)
+            self.output_file = os.path.abspath(os.path.join('NC', self.output_file))
+
+            with open(self.output_file, 'w') as fd:
+                print(output, file=fd)
             print('Wrote program to %s' % self.output_file)
         except Exception as e:
             print('ERROR: There was a problem writing out the file.')

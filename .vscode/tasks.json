@@ -6,7 +6,10 @@
         {
             "label": "RenPy - Output .NC",
             "type": "shell",
-            "command": "python ./renpy.py '${fileBasename}'",
+            "command": "python RenPy.py '${relativeFile}'",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
             "presentation": {
                 "reveal": "always",
                 "panel": "new"
