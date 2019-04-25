@@ -1,5 +1,6 @@
-'''RenPy - A parser for converting custom NC code into pure Fanuc Macro B NC code
-'''
+#!/usr/bin/env python
+
+'''RenPy - A parser for converting custom NC code into pure Fanuc Macro B NC code'''
 from __future__ import print_function
 from lib.RenPyConstants import *
 import re
